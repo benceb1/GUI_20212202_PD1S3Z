@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace GameClient
+namespace _2DPlatformer
 {
     /// <summary>
     /// Interaction logic for App.xaml

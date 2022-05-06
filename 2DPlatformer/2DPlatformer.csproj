@@ -1,0 +1,108 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <RootNamespace>_2DPlatformer</RootNamespace>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Fonts\futur.ttf" />
+    <None Remove="PNG\BackgroundGame\parallax-demon-woods-bg.png" />
+    <None Remove="PNG\BackgroundGame\parallax-demon-woods-close-trees.png" />
+    <None Remove="PNG\BackgroundGame\parallax-demon-woods-far-trees.png" />
+    <None Remove="PNG\BackgroundGame\parallax-demon-woods-mid-trees.png" />
+    <None Remove="PNG\BackgroundMenu\MenuBackground.png" />
+    <None Remove="PNG\Button\10.png" />
+    <None Remove="PNG\Character\adventurer-attack1-00.png" />
+    <None Remove="PNG\Character\adventurer-attack1-01.png" />
+    <None Remove="PNG\Character\adventurer-attack1-02.png" />
+    <None Remove="PNG\Character\adventurer-attack1-03.png" />
+    <None Remove="PNG\Character\adventurer-attack1-04.png" />
+    <None Remove="PNG\Character\adventurer-attack2-00.png" />
+    <None Remove="PNG\Character\adventurer-attack2-01.png" />
+    <None Remove="PNG\Character\adventurer-attack2-02.png" />
+    <None Remove="PNG\Character\adventurer-attack2-03.png" />
+    <None Remove="PNG\Character\adventurer-attack2-04.png" />
+    <None Remove="PNG\Character\adventurer-attack2-05.png" />
+    <None Remove="PNG\Character\adventurer-attack3-00.png" />
+    <None Remove="PNG\Character\adventurer-attack3-01.png" />
+    <None Remove="PNG\Character\adventurer-attack3-02.png" />
+    <None Remove="PNG\Character\adventurer-attack3-03.png" />
+    <None Remove="PNG\Character\adventurer-attack3-04.png" />
+    <None Remove="PNG\Character\adventurer-attack3-05.png" />
+    <None Remove="PNG\Character\adventurer-idle-2-00.png" />
+    <None Remove="PNG\Character\adventurer-idle-2-01.png" />
+    <None Remove="PNG\Character\adventurer-idle-2-02.png" />
+    <None Remove="PNG\Character\adventurer-idle-2-03.png" />
+    <None Remove="PNG\Character\adventurer-jump-00.png" />
+    <None Remove="PNG\Character\adventurer-jump-01.png" />
+    <None Remove="PNG\Character\adventurer-jump-02.png" />
+    <None Remove="PNG\Character\adventurer-jump-03.png" />
+    <None Remove="PNG\Character\adventurer-run-00.png" />
+    <None Remove="PNG\Character\adventurer-run-01.png" />
+    <None Remove="PNG\Character\adventurer-run-02.png" />
+    <None Remove="PNG\Character\adventurer-run-03.png" />
+    <None Remove="PNG\Character\adventurer-run-04.png" />
+    <None Remove="PNG\Character\adventurer-run-05.png" />
+    <None Remove="PNG\Coin\0.png" />
+    <None Remove="PNG\Coin\1.png" />
+    <None Remove="PNG\Coin\2.png" />
+    <None Remove="PNG\Coin\3.png" />
+    <None Remove="PNG\Coin\4.png" />
+    <None Remove="PNG\Coin\5.png" />
+    <None Remove="PNG\Tile\Tile.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Fonts\futur.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="PNG\BackgroundGame\parallax-demon-woods-bg.png" />
+    <Resource Include="PNG\BackgroundGame\parallax-demon-woods-close-trees.png" />
+    <Resource Include="PNG\BackgroundGame\parallax-demon-woods-far-trees.png" />
+    <Resource Include="PNG\BackgroundGame\parallax-demon-woods-mid-trees.png" />
+    <Resource Include="PNG\BackgroundMenu\MenuBackground.png" />
+    <Resource Include="PNG\Button\10.png" />
+    <Resource Include="PNG\Character\adventurer-attack1-00.png" />
+    <Resource Include="PNG\Character\adventurer-attack1-01.png" />
+    <Resource Include="PNG\Character\adventurer-attack1-02.png" />
+    <Resource Include="PNG\Character\adventurer-attack1-03.png" />
+    <Resource Include="PNG\Character\adventurer-attack1-04.png" />
+    <Resource Include="PNG\Character\adventurer-attack2-00.png" />
+    <Resource Include="PNG\Character\adventurer-attack2-01.png" />
+    <Resource Include="PNG\Character\adventurer-attack2-02.png" />
+    <Resource Include="PNG\Character\adventurer-attack2-03.png" />
+    <Resource Include="PNG\Character\adventurer-attack2-04.png" />
+    <Resource Include="PNG\Character\adventurer-attack2-05.png" />
+    <Resource Include="PNG\Character\adventurer-attack3-00.png" />
+    <Resource Include="PNG\Character\adventurer-attack3-01.png" />
+    <Resource Include="PNG\Character\adventurer-attack3-02.png" />
+    <Resource Include="PNG\Character\adventurer-attack3-03.png" />
+    <Resource Include="PNG\Character\adventurer-attack3-04.png" />
+    <Resource Include="PNG\Character\adventurer-attack3-05.png" />
+    <Resource Include="PNG\Character\adventurer-idle-2-00.png" />
+    <Resource Include="PNG\Character\adventurer-idle-2-01.png" />
+    <Resource Include="PNG\Character\adventurer-idle-2-02.png" />
+    <Resource Include="PNG\Character\adventurer-idle-2-03.png" />
+    <Resource Include="PNG\Character\adventurer-jump-00.png" />
+    <Resource Include="PNG\Character\adventurer-jump-01.png" />
+    <Resource Include="PNG\Character\adventurer-jump-02.png" />
+    <Resource Include="PNG\Character\adventurer-jump-03.png" />
+    <Resource Include="PNG\Character\adventurer-run-00.png" />
+    <Resource Include="PNG\Character\adventurer-run-01.png" />
+    <Resource Include="PNG\Character\adventurer-run-02.png" />
+    <Resource Include="PNG\Character\adventurer-run-03.png" />
+    <Resource Include="PNG\Character\adventurer-run-04.png" />
+    <Resource Include="PNG\Character\adventurer-run-05.png" />
+    <Resource Include="PNG\Coin\0.png" />
+    <Resource Include="PNG\Coin\1.png" />
+    <Resource Include="PNG\Coin\2.png" />
+    <Resource Include="PNG\Coin\3.png" />
+    <Resource Include="PNG\Coin\4.png" />
+    <Resource Include="PNG\Coin\5.png" />
+    <Resource Include="PNG\Tile\Tile.png" />
+  </ItemGroup>
+
+</Project>

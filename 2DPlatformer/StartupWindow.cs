@@ -13,16 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GameClient
+namespace _2DPlatformer
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for StartupWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class StartupWindow : Window
     {
-        public MainWindow()
+        public StartupWindow()
         {
             InitializeComponent();
+            startupFrame.NavigationService.Navigate(new Titlescreen());
         }
     }
 }
