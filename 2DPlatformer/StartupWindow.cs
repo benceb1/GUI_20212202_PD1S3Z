@@ -20,8 +20,11 @@ namespace _2DPlatformer
     /// </summary>
     public partial class StartupWindow : Window
     {
+        
         public StartupWindow()
         {
+            
+            
             InitializeComponent();
             startupFrame.NavigationService.Navigate(new Titlescreen());
         }

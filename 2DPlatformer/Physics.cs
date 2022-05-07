@@ -9,15 +9,15 @@ namespace _2DPlatformer
 {
     class Physics
     {
-        public static void Gravity(Canvas playground, Player playerobj)
+        public static void Gravity(Canvas map, Player player)
         {
-            if (Collision.CollisionDetectTop(playground, playerobj, false) == false)
+            if (Collision.CollisionDetectTop(map, player, false) == false)
             {
-                playerobj.Y += 0.15;
+                player.Y += 0.15;
             }
             else
             {
-                playerobj.Y = 0;
+                player.Y = 0;
             }
         }
 

@@ -11,16 +11,18 @@ namespace _2DPlatformer
         public delegate void GameOverEventHandler(Player sender, int e);
         public event GameOverEventHandler GameOver;
 
-        private double x;
-        private double y;
+        private double x; //Current X velocity of character 
+        private double y; //Current Y velocity of character 
 
-        private double velocityX = 3;
-        private double velocityY = 5;
+        private double velocityX = 3; // Change in velocity during movement
+        private double velocityY = 6; // Change in velocity during movement
 
-        private int coinCounter = 0;
+
 
         private bool endofgame = false;
         private bool singleplayer;
+        private int experience = 0; // Experience of the player
+        private int coinCounter = 0; //Ammount of coin picked up
 
         
 
@@ -28,13 +30,19 @@ namespace _2DPlatformer
 
         public Player(double height, double width, double left, double top, bool _singleplayer)
         {
-            singleplayer = _singleplayer;
+            Singleplayer = _singleplayer;
             Height = height;
             Width = width;
             Left = left;
             Top = top;
+
             
             
+        }
+        public int CoinCounter
+        {
+            get { return coinCounter; }
+            set { coinCounter = value; NotifyPropertyChanged(); }
         }
         public double X
         {
@@ -44,7 +52,9 @@ namespace _2DPlatformer
         public double Y
         {
             get { return y; }
-            set { y = value; NotifyPropertyChanged(); }
+            set { y = value; 
+                NotifyPropertyChanged(); 
+            }
         }
         public double VelocityX
         {
@@ -56,13 +66,22 @@ namespace _2DPlatformer
             get { return velocityY; }
             set { velocityY = value; }
         }
+        public int Experience
+        {
+            get { return experience; }
+            set
+            {
+                experience = value;
+                NotifyPropertyChanged();
+            }
+        }
 
         public override double Top
         {
             get { return top; }
             set
             {
-                if (value < 800)
+                if (value < 768)
                 {
                     top = value; 
                     NotifyPropertyChanged();
@@ -80,19 +99,14 @@ namespace _2DPlatformer
             get { return singleplayer; }
             set { singleplayer = value; }
         }
-        public int CoinCounter
-        {
-            get { return coinCounter; }
-            set { coinCounter = value; NotifyPropertyChanged(); }
-
-        }
+        
 
 
         public virtual void OnGameOver()
         {
             if (GameOver != null)
             {
-                GameOver(this, CoinCounter);
+                GameOver(this, Experience);
             }
         }
     }

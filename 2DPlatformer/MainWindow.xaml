@@ -5,21 +5,25 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:_2DPlatformer"
       mc:Ignorable="d"
-      Title="MainWindow" Height="768" Width="1024" KeyDown="Window_KeyDown" KeyUp="Window_KeyUp" Foreground="{x:Null}">
-    <Canvas Height="768" Width="1024" x:Name="Backgroundgamecanvas">
+      Title="MainWindow" Height="768" Width="30000" KeyDown="Window_KeyDown" KeyUp="Window_KeyUp" Foreground="{x:Null}">
+    <Canvas Height="768" Width="30000" x:Name="Parallexcanvas">
 
 
-        <Image Stretch="Fill" Height="768" Width="1024" x:Name="background1" Source="PNG/BackgroundGame/parallax-demon-woods-bg.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="1" Canvas.Top="1" Panel.ZIndex="-5" RenderTransformOrigin="0.5,0.5">
-        </Image>
-        <Image Stretch="Fill" Height="768" Width="1024" x:Name="background3" Source="PNG/BackgroundGame/parallax-demon-woods-far-trees.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="1" Canvas.Top="1" Panel.ZIndex="-5"/>
-        <Image Stretch="Fill" Height="768" Width="1024" x:Name="background4" Source="PNG/BackgroundGame/parallax-demon-woods-mid-trees.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="1" Canvas.Top="1" Panel.ZIndex="-5"/>
-        <Image Stretch="Fill" Height="768" Width="1024" x:Name="background2" Source="PNG/BackgroundGame/parallax-demon-woods-close-trees.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="1" Canvas.Top="1" Panel.ZIndex="-5"/>
+        <Image  Height="768" x:Name="background1" Source="PNG/BackgroundGame/parallax-demon-woods-bg.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="1" Canvas.Top="1" Panel.ZIndex="-4" Width="1671.52941176471" />
+        <Image  Height="768" x:Name="background2" Source="PNG/BackgroundGame/parallax-demon-woods-far-trees.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="1" Canvas.Top="1" Panel.ZIndex="-3"/>
+        <Image  Height="768" x:Name="background3" Source="PNG/BackgroundGame/parallax-demon-woods-mid-trees.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="1" Canvas.Top="1" Panel.ZIndex="-2"/>
+        <Image  Height="768" x:Name="background4" Source="PNG/BackgroundGame/parallax-demon-woods-close-trees.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="1" Canvas.Top="1" Panel.ZIndex="-1"/>
+        
+        <Image  Height="768" x:Name="background5" Source="PNG/BackgroundGame/parallax-demon-woods-bg.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="1024" Canvas.Top="1" Panel.ZIndex="-4" Width="1671.52941176471"/>
+        <Image  Height="768" x:Name="background6" Source="PNG/BackgroundGame/parallax-demon-woods-far-trees.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="1024" Canvas.Top="1" Panel.ZIndex="-3"/>
+        <Image  Height="768" x:Name="background7" Source="PNG/BackgroundGame/parallax-demon-woods-mid-trees.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="1024" Canvas.Top="1" Panel.ZIndex="-2"/>
+        <Image  Height="768" x:Name="background8" Source="PNG/BackgroundGame/parallax-demon-woods-close-trees.png"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="1024" Canvas.Top="1" Panel.ZIndex="-1" Margin="0,-1,-1,0"/>
 
 
 
 
         <ScrollViewer Name="Scroller" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Canvas.Left="5" Width="1024" Height="768">
-            <Canvas x:Name="game_canvas" Height="768" Width="1024">
+            <Canvas x:Name="game_canvas" Height="768" Width="30351">
                 <Rectangle x:Name="player_canvas" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.561" Canvas.Left="{Binding Path=Left}" Canvas.Top="{Binding Path=Top}" Height="{Binding Path=Height}" Width="{Binding Path=Width}">
                     <Rectangle.RenderTransform>
                         <TransformGroup>
@@ -33,7 +37,7 @@
                         <ImageBrush ImageSource="PNG/Character/adventurer-idle-2-03.png"/>
                     </Rectangle.Fill>
                 </Rectangle>
-                <Rectangle x:Name="rect8" Height="29" Width="190" Canvas.Left="-31" Canvas.Top="315" RenderTransformOrigin="0.52,0.545" RadiusX="15" RadiusY="28">
+                <Rectangle Panel.ZIndex="0" x:Name="rect8" Height="29" Width="190" Canvas.Left="-31" Canvas.Top="315" RenderTransformOrigin="0.52,0.545" RadiusX="15" RadiusY="28">
                     <Rectangle.Fill>
                         <ImageBrush ImageSource="PNG/Tile/Tile.png"/>
                     </Rectangle.Fill>

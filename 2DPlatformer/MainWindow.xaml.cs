@@ -21,9 +21,10 @@ namespace _2DPlatformer
     /// </summary>
     public partial class MainWindow : Page
     {
-        Player player = new Player(85, 65, 1, 1, true);
+        Player player = new Player(73, 42, 1, 1, true);
 
         Animation anim = new Animation();
+        SoundController soundcontroll = new SoundController();
         Task task1;
         Task task2;
         Task task3;
@@ -31,8 +32,9 @@ namespace _2DPlatformer
         {
             DataContext = player;
             InitializeComponent();
+            soundcontroll.PlayMusic();
 
-            MapGenerator.MapCreate(game_canvas);
+            MapGenerator.MapCreate(game_canvas,4);
 
             Effects.EndTransiton(game_canvas, MainWindows_Page);
             var PhysicsTimer = new DispatcherTimer();
@@ -45,13 +47,15 @@ namespace _2DPlatformer
             CoinTimer.Interval = new TimeSpan(0, 0, 0, 0, 50);
 
             AnimationTimer.Tick += AnimationTimerTick;
-            AnimationTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            AnimationTimer.Interval = new TimeSpan(0, 0, 0, 0, 140);
             task1 = new Task(PhysicsTimer.Start);
             task2 = new Task(AnimationTimer.Start);
             task3 = new Task(CoinTimer.Start);
             task1.Start();
             task2.Start();
             task3.Start();
+            ;
+
 
 
 
@@ -64,7 +68,9 @@ namespace _2DPlatformer
         private void PhysicsTimerTick(object sender, EventArgs e)
         {
             Controller.PlayerMove(game_canvas, player, true);
-            Physics.Gravity(game_canvas, player);       
+            Physics.Gravity(game_canvas, player);
+            CameraFollow.CameraFollowPlayer(player, Scroller, 250);
+            Effects.IngameParallexBackground4(background1, background2, background3, background4, background5, background6, background7, background8, 1,player.X ,MainWindows_Page.ActualWidth, Collision.CollisionDetectLeft(game_canvas, player, false), Collision.CollisionDetectRight(game_canvas, player, false));
         }
         private void AnimationTimerTick(object sender, EventArgs e)
         {

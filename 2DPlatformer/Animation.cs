@@ -10,8 +10,10 @@ using System.Windows.Shapes;
 
 namespace _2DPlatformer
 {
+    
+   
     class Animation
-    {
+    {       
         List<string> idlechar = new List<string>
 
         {
@@ -71,11 +73,18 @@ namespace _2DPlatformer
               "pack://application:,,,/2DPlatformer;component/PNG/Coin/4.png",
               "pack://application:,,,/2DPlatformer;component/PNG/Coin/5.png",
         };
+        List<string> fallanimation = new List<string>
+        {
+            "pack://application:,,,/2DPlatformer;component/PNG/Character/adventurer-fall-00.png",
+              "pack://application:,,,/2DPlatformer;component/PNG/Character/adventurer-fall-01.png"
+        };
         int playeranimationcounter = 0;
+        int playerjumpanimationcounter = 0;
+        int playerfallanimationcounter = 0;
         int coinCounter = 0;
         public void PlayerAnimation(Rectangle PlayerCanvas, Player player)
         {
-            if (player.X == 0)
+            if (player.X == 0 && player.Y==0)
             {
                 if (playeranimationcounter >= idlechar.Count)
                 {
@@ -87,7 +96,7 @@ namespace _2DPlatformer
                 };
                 playeranimationcounter++;
             }
-            else
+            else if(player.X!=0&&player.Y==0)
             {
                 if (player.X < 0)
                 {
@@ -107,6 +116,41 @@ namespace _2DPlatformer
                     ImageSource = new BitmapImage(new Uri(runchar[playeranimationcounter], UriKind.Absolute))
                 };
                 playeranimationcounter++;
+            }
+            else if(player.Y!=0)
+            {
+                if(player.Y!=0 && player.X<0)
+                {
+                    PlayerCanvas.LayoutTransform = new ScaleTransform(1, 1, 0, 0);
+                }
+                else if(player.Y!=0&&player.X>0)
+                {
+                    PlayerCanvas.LayoutTransform = new ScaleTransform(-1, 1, 0, 0);
+                }
+                if (playerjumpanimationcounter >= jumpchar.Count)
+                {
+                    playerjumpanimationcounter = 0;
+                }
+                if(playerfallanimationcounter >= fallanimation.Count)
+                {
+                    playerfallanimationcounter = 0;
+                }
+                if(player.Y<0)
+                {
+                    PlayerCanvas.Fill = new ImageBrush
+                    {
+                        ImageSource = new BitmapImage(new Uri(jumpchar[playerjumpanimationcounter], UriKind.Absolute))
+                    };
+                }
+                else if(player.Y>0)
+                {
+                    PlayerCanvas.Fill = new ImageBrush
+                    {
+                        ImageSource = new BitmapImage(new Uri(fallanimation[playerfallanimationcounter], UriKind.Absolute))
+                    };
+                }              
+                playerfallanimationcounter++;
+                playerjumpanimationcounter++;
             }
         }
         public void CoinAnimation(Shape coin)

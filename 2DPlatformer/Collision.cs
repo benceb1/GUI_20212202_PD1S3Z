@@ -51,7 +51,7 @@ namespace _2DPlatformer
             }
 
         }
-        public static bool CollisonDetectBottom(Canvas canvas, Player player, bool coindetect)
+        public static bool CollisionDetectBottom(Canvas canvas, Player player, bool coindetect)
         {
             int i;
             bool bottom;
@@ -138,7 +138,7 @@ namespace _2DPlatformer
                 return right;
             }
         }
-        public static bool CollisonDetectLeft(Canvas canvas, Player player, bool coindetect)
+        public static bool CollisionDetectLeft(Canvas canvas, Player player, bool coindetect)
         {
             int i;
             bool left;
@@ -186,8 +186,8 @@ namespace _2DPlatformer
         public static void CollisonDetectAll(Canvas ShapeCanvas, Player playerobj, bool coindetect)
         {
             CollisionDetectTop(ShapeCanvas, playerobj, coindetect);
-            CollisonDetectBottom(ShapeCanvas, playerobj, coindetect);
-            CollisonDetectLeft(ShapeCanvas, playerobj, coindetect);
+            CollisionDetectBottom(ShapeCanvas, playerobj, coindetect);
+            CollisionDetectLeft(ShapeCanvas, playerobj, coindetect);
             CollisionDetectRight(ShapeCanvas, playerobj, coindetect);
         }
     }

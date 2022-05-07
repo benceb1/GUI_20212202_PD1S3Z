@@ -8,7 +8,32 @@
       Title="Titlescreen" Background="Black" Width="1024" Height="768">
     <Page.Resources>
         <FontFamily x:Key="futura">pack://application:,,,/Fonts/#futur</FontFamily>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <Grid>
+                                <Rectangle x:Name="background" Fill="{TemplateBinding Background}"/>
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="background" Property="Opacity" Value="0.8"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="False">
+                                <Setter TargetName="background" Property="Opacity" Value="1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
     </Page.Resources>
+    
     <Canvas x:Name="title_canvas" Width="1024" Height="768">
         <Image x:Name="title_background" Source="PNG/BackgroundMenu/MenuBackground.png" Height="768" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="1"></Image>
         <Grid Height="768" Width="1024">
@@ -19,7 +44,7 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Button Grid.Row="1" Content="Start" Width="316" Click="Button_Click" FontSize="42" HorizontalAlignment="Center" VerticalAlignment="Center" Height="275" BorderBrush="{x:Null}" FontFamily="{StaticResource futura}" Panel.ZIndex="3">
+            <Button FontFamily="{StaticResource futura}" Grid.Row="1" Content="Start" Width="316" Click="Button_Click" FontSize="42" HorizontalAlignment="Center" VerticalAlignment="Center" Height="275" BorderBrush="{x:Null}" Panel.ZIndex="3">
                 <Button.Background>
                     <ImageBrush ImageSource="PNG/Button/10.png"/>
                 </Button.Background>
