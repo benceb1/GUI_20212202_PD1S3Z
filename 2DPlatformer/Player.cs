@@ -133,7 +133,7 @@ namespace _2DPlatformer
         {
             if (GameOver != null)
             {
-                GameOver(this, Experience);
+                GameOver?.Invoke(this, Experience);
             }
         }
     }
