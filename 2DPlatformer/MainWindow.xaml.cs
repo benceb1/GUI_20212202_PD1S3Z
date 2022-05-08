@@ -74,8 +74,8 @@ namespace _2DPlatformer
             task3.Start();
             task4.Start();
             task5.Start();
-            
-            
+
+            player.GameOver += OnGameOver;
 
 
 
@@ -85,6 +85,7 @@ namespace _2DPlatformer
 
 
         }
+
         private void AttackAnimationTick(object sender, EventArgs e)
         {
             anim.PlayerAttackAnimation(player_canvas, player, attacknumber);
@@ -137,7 +138,15 @@ namespace _2DPlatformer
         }
         private void OnGameOver(Player sender, int e)
         {
-            NavigationService.Navigate(new Titlescreen());
+            var result = MessageBox.Show("Try again?", "Game Over", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                NavigationService.Navigate(new Titlescreen());
+            }
+            if (result == MessageBoxResult.No)
+            {
+                Application.Current.Shutdown();
+            }
         }
 
         private void Window_KeyUp(object sender, KeyEventArgs e)
