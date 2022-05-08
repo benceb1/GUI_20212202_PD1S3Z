@@ -10,7 +10,7 @@ namespace _2DPlatformer
 {
      static class Collision
     {
-        public static bool CollisionDetectTop(Canvas canvas, Player player, bool coindetect)
+        public static bool CollisionDetectTop(Canvas canvas, Player player, bool coindetect,bool enemydetect)
         {
             int i;
             bool top;
@@ -18,14 +18,28 @@ namespace _2DPlatformer
             i = 0;
             foreach (Shape xy in canvas.Children)
             {
+                if (player.IsAttacking==true&&player.Left >= Canvas.GetLeft(xy) - player.Width-40 && player.Left-40 <= Canvas.GetLeft(xy) + xy.Width && player.Top > Canvas.GetTop(xy) - player.Height && player.Top < Canvas.GetTop(xy) - player.Height + 5)
+                {
+                    if (enemydetect == true && xy.Name == "Slime")
+                    {
+                        i++;
+                        removelist.AddLast(xy);
+                        player.Experience = player.Experience + 5;
+                    }
+                }
                 if (player.Left >= Canvas.GetLeft(xy) - player.Width && player.Left <= Canvas.GetLeft(xy) + xy.Width && player.Top > Canvas.GetTop(xy) - player.Height && player.Top < Canvas.GetTop(xy) - player.Height + 10)
                 {
-                    if (coindetect == true && Equals(xy.GetType(), typeof(Ellipse)))
+                    if (coindetect == true && xy.Name=="Coin")
                     {
                         i++;
                         removelist.AddLast(xy);
                         player.CoinCounter++;
                         player.Experience = player.Experience + 2;
+                    }
+                    if(enemydetect==true&&xy.Name=="Slime" &&player.IsDamaged==false)
+                    {
+                        i++;
+                        player.playerDamaged();
                     }
                 }
                 else
@@ -35,9 +49,9 @@ namespace _2DPlatformer
             }
             if (coindetect == true)
             {
-                foreach (Shape element in removelist)
+                foreach (Shape xy in removelist)
                 {
-                    canvas.Children.Remove(element);
+                    canvas.Children.Remove(xy);
                 }
             }
             if (i == canvas.Children.Count)
@@ -52,7 +66,7 @@ namespace _2DPlatformer
             }
 
         }
-        public static bool CollisionDetectBottom(Canvas canvas, Player player, bool coindetect)
+        public static bool CollisionDetectBottom(Canvas canvas, Player player, bool coindetect, bool enemydetect)
         {
             int i;
             bool bottom;
@@ -61,16 +75,30 @@ namespace _2DPlatformer
 
             i = 0;
 
-            foreach (Shape element in canvas.Children)
+            foreach (Shape xy in canvas.Children)
             {
-                if (player.Left >= Canvas.GetLeft(element) - player.Width && player.Left <= Canvas.GetLeft(element) + element.Width && player.Top > Canvas.GetTop(element) + element.Height && player.Top < Canvas.GetTop(element) + element.Height + 10)
+                if (player.IsAttacking == true && player.Left >= Canvas.GetLeft(xy) - player.Width - 40 && player.Left - 40 <= Canvas.GetLeft(xy) + xy.Width && player.Top > Canvas.GetTop(xy) - player.Height && player.Top < Canvas.GetTop(xy) - player.Height + 5)
                 {
-                    if (coindetect == true && Equals(element.GetType(), typeof(Ellipse)))
+                    if (enemydetect == true && xy.Name == "Slime")
                     {
                         i++;
-                        removelist.AddLast(element);
+                        removelist.AddLast(xy);
+                        player.Experience = player.Experience + 5;
+                    }
+                }
+                if (player.Left >= Canvas.GetLeft(xy) - player.Width && player.Left <= Canvas.GetLeft(xy) + xy.Width && player.Top > Canvas.GetTop(xy) + xy.Height && player.Top < Canvas.GetTop(xy) + xy.Height + 10)
+                {
+                    if (coindetect == true && xy.Name == "Coin")
+                    {
+                        i++;
+                        removelist.AddLast(xy);
                         player.CoinCounter++;
                         player.Experience = player.Experience + 2;
+                    }
+                    if (enemydetect == true && xy.Name == "Slime" &&player.IsDamaged == false)
+                    {
+                        i++;
+                        player.playerDamaged();
                     }
                 }
                 else
@@ -80,9 +108,9 @@ namespace _2DPlatformer
             }
             if (coindetect == true)
             {
-                foreach (Shape element in removelist)
+                foreach (Shape xy in removelist)
                 {
-                    canvas.Children.Remove(element);
+                    canvas.Children.Remove(xy);
                 }
             }
             if (i == canvas.Children.Count)
@@ -96,7 +124,7 @@ namespace _2DPlatformer
                 return bottom;
             }
         }
-        public static bool CollisionDetectRight(Canvas canvas, Player player, bool coindetect)
+        public static bool CollisionDetectRight(Canvas canvas, Player player, bool coindetect, bool enemydetect)
         {
             int i;
             bool right;
@@ -105,15 +133,29 @@ namespace _2DPlatformer
             i = 0;
             foreach (Shape xy in canvas.Children)
             {
+                if (player.IsAttacking == true && player.Left >= Canvas.GetLeft(xy) - player.Width - 40 && player.Left - 40 <= Canvas.GetLeft(xy) + xy.Width && player.Top > Canvas.GetTop(xy) - player.Height && player.Top < Canvas.GetTop(xy) - player.Height + 5)
+                {
+                    if (enemydetect == true && xy.Name == "Slime")
+                    {
+                        i++;
+                        removelist.AddLast(xy);
+                        player.Experience = player.Experience + 5;
+                    }
+                }
 
                 if (player.Top >= Canvas.GetTop(xy) - player.Height && player.Top <= Canvas.GetTop(xy) + xy.Height && player.Left > Canvas.GetLeft(xy) + xy.Width && player.Left < Canvas.GetLeft(xy) + xy.Width + 10)
                 {
-                    if (coindetect == true && Equals(xy.GetType(), typeof(Ellipse)))
+                    if (coindetect == true && xy.Name == "Coin")
                     {
                         i++;
                         removelist.AddLast(xy);
                         player.CoinCounter++;
                         player.Experience = player.Experience + 2;
+                    }
+                    if (enemydetect == true && xy.Name == "Slime" && player.IsDamaged == false)
+                    {
+                        i++;
+                        player.playerDamaged();
                     }
                 }
                 else
@@ -123,9 +165,9 @@ namespace _2DPlatformer
             }
             if (coindetect == true)
             {
-                foreach (Shape element in removelist)
+                foreach (Shape xy in removelist)
                 {
-                    canvas.Children.Remove(element);
+                    canvas.Children.Remove(xy);
                 }
             }
 
@@ -141,7 +183,7 @@ namespace _2DPlatformer
                 return right;
             }
         }
-        public static bool CollisionDetectLeft(Canvas canvas, Player player, bool coindetect)
+        public static bool CollisionDetectLeft(Canvas canvas, Player player, bool coindetect, bool enemydetect)
         {
             int i;
             bool left;
@@ -151,15 +193,30 @@ namespace _2DPlatformer
             i = 0;
             foreach (Shape xy in canvas.Children)
             {
+                if (player.IsAttacking == true && player.Left >= Canvas.GetLeft(xy) - player.Width - 40 && player.Left - 40 <= Canvas.GetLeft(xy) + xy.Width && player.Top > Canvas.GetTop(xy) - player.Height && player.Top < Canvas.GetTop(xy) - player.Height + 5)
+                {
+                    if (enemydetect == true && xy.Name == "Slime")
+                    {
+                        i++;
+                        removelist.AddLast(xy);
+                        player.Experience = player.Experience + 5;
+                    }
+                }
 
                 if (player.Top >= Canvas.GetTop(xy) - player.Height && player.Top <= Canvas.GetTop(xy) + xy.Height && player.Left > Canvas.GetLeft(xy) - player.Width && player.Left < Canvas.GetLeft(xy) - player.Width + 10)
                 {
-                    if (coindetect == true && Equals(xy.GetType(), typeof(Ellipse)))
+                    if (coindetect == true && xy.Name == "Coin")
                     {
                         i++;
                         removelist.AddLast(xy);
                         player.CoinCounter++;
                         player.Experience = player.Experience + 2;
+                    }
+                    if (enemydetect == true && xy.Name == "Slime" && player.IsDamaged == false)
+                    {
+                        i++;
+                        player.playerDamaged();
+                        
                     }
                 }
                 else
@@ -169,9 +226,9 @@ namespace _2DPlatformer
             }
             if (coindetect == true)
             {
-                foreach (Shape element in removelist)
+                foreach (Shape xy in removelist)
                 {
-                    canvas.Children.Remove(element);
+                    canvas.Children.Remove(xy);
                 }
             }
 
@@ -187,12 +244,12 @@ namespace _2DPlatformer
                 return left;
             }
         }
-        public static void CollisonDetectAll(Canvas shapecanvas, Player player, bool coindetect)
+        public static void CollisonDetectAll(Canvas shapecanvas, Player player, bool coindetect, bool enemydetect)
         {
-            CollisionDetectTop(shapecanvas, player, coindetect);
-            CollisionDetectBottom(shapecanvas, player, coindetect);
-            CollisionDetectLeft(shapecanvas, player, coindetect);
-            CollisionDetectRight(shapecanvas, player, coindetect);
+            CollisionDetectTop(shapecanvas, player, coindetect, enemydetect);
+            CollisionDetectBottom(shapecanvas, player, coindetect, enemydetect);
+            CollisionDetectLeft(shapecanvas, player, coindetect, enemydetect);
+            CollisionDetectRight(shapecanvas, player, coindetect, enemydetect);
         }
     }
 }

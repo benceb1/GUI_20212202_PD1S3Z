@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace _2DPlatformer
 {
@@ -23,9 +24,30 @@ namespace _2DPlatformer
         private bool singleplayer;
         private int health = 100;
         private bool isAttacking = false;
-        private bool isDealingDamage;
+        private bool isDealingDamage = false;
+        private bool isDamaged = false;
+        
+        
         private int experience = 0; // Experience of the player
         private int coinCounter = 0; //Ammount of coin picked up
+        public void playerDamaged()
+        {
+            IsDamaged = true;
+            Health = Health - 10;
+            DispatcherTimer hptimer = new DispatcherTimer();
+            hptimer.Interval = new TimeSpan(0, 0, 0, 1, 0);
+            int count = 0;
+            hptimer.Start();
+            hptimer.Tick += (sender, e) =>
+             {
+                 if (count == 3)
+                 {
+                     IsDamaged = false;
+                     hptimer.Stop();
+                 }
+                 count++;
+             };
+        }
 
         
 
@@ -40,9 +62,17 @@ namespace _2DPlatformer
             Top = top;
             Health = health;
             isDealingDamage = false;
+            isDamaged = false;
 
             
             
+        }
+        public bool IsDamaged
+        {
+            get { return isDamaged; }
+            set{
+                isDamaged = value;
+            }
         }
         public bool IsDealingDamage
         {
@@ -74,15 +104,7 @@ namespace _2DPlatformer
                 NotifyPropertyChanged(); 
             }
         }
-        public int Health
-        {
-            get { return health; }
-            set
-            {
-                health = value;
-                NotifyPropertyChanged();
-            }
-        }
+        
         public double VelocityX
         {
             get { return velocityX; }
@@ -120,7 +142,26 @@ namespace _2DPlatformer
                 }
             }
         }
-        
+        public int Health
+        {
+            get { return health; }
+            set
+            {
+                if(value>0)
+                {
+                    health = value;
+                    NotifyPropertyChanged();
+                }
+                
+                if (value <= 0&&endofgame==false)
+                {
+
+                    OnGameOver();
+                    endofgame = true;
+                }
+            }
+        }
+
         public bool Singleplayer
         {
             get { return singleplayer; }

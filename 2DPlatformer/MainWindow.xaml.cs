@@ -21,7 +21,7 @@ namespace _2DPlatformer
     /// </summary>
     public partial class MainWindow : Page
     {
-        Player player = new Player(84, 52, 1, 1, true);
+        Player player = new Player(80, 50, 1, 1, true);
         private int attacknumber=1;
         Animation anim = new Animation();
         Animation attackanim = new Animation();
@@ -31,8 +31,7 @@ namespace _2DPlatformer
         Task task3;
         Task task4;
         Task task5;
-        
-        static Random randomattack = new Random();
+       
         public MainWindow()
         {
             DataContext = player;
@@ -93,10 +92,10 @@ namespace _2DPlatformer
 
         private void PhysicsTimerTick(object sender, EventArgs e)
         {
-            Controller.PlayerMove(game_canvas, player, true);
+            Controller.PlayerMove(game_canvas, player, true,true);
             Physics.Gravity(game_canvas, player);
             CameraFollow.CameraFollowPlayer(player, Scroller, 250);
-            Effects.IngameParallexBackground4(background1, background2, background3, background4, background5, background6, background7, background8, 1,player.X ,MainWindows_Page.ActualWidth, Collision.CollisionDetectLeft(game_canvas, player, false), Collision.CollisionDetectRight(game_canvas, player, false));
+            Effects.IngameParallexBackground4(background1, background2, background3, background4, background5, background6, background7, background8, 1,player.X ,MainWindows_Page.ActualWidth, Collision.CollisionDetectLeft(game_canvas, player, false,false), Collision.CollisionDetectRight(game_canvas, player, false,false));
         }
         private void AnimationTimerTick(object sender, EventArgs e)
         {
@@ -116,10 +115,11 @@ namespace _2DPlatformer
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             player.X = Controller.MoveX(sender, e, player.X, player.VelocityX);
-            player.Y = Controller.MoveY(sender, e, player.Y, player.VelocityY, Collision.CollisionDetectTop(game_canvas, player, false));
+            player.Y = Controller.MoveY(sender, e, player.Y, player.VelocityY, Collision.CollisionDetectTop(game_canvas, player, false,false));
 
             if (e.Key == Key.Escape)
             {
+
                 this.NavigationService.Navigate(new Titlescreen());
             }
             if(e.Key==Key.Space)
@@ -141,6 +141,7 @@ namespace _2DPlatformer
             var result = MessageBox.Show("Try again?", "Game Over", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
+                soundcontroll.StopMusic();
                 NavigationService.Navigate(new Titlescreen());
             }
             if (result == MessageBoxResult.No)

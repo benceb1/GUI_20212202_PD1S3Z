@@ -55,36 +55,36 @@ namespace _2DPlatformer
             return y;
         }
         
-        public static void PlayerMove(Canvas playground, Player player, bool coindetect)
+        public static void PlayerMove(Canvas playground, Player player, bool coindetect, bool enemydetect)
         {
 
-            if (Collision.CollisionDetectTop(playground, player, coindetect) == false && Collision.CollisionDetectBottom(playground, player, coindetect) == false)
+            if (Collision.CollisionDetectTop(playground, player, coindetect, enemydetect) == false && Collision.CollisionDetectBottom(playground, player, coindetect, enemydetect) == false)
             {
                 player.Top += player.Y;
             }
             else
             {
-                if (player.Y < 0 && Collision.CollisionDetectTop(playground, player, coindetect) == true)
+                if (player.Y < 0 && Collision.CollisionDetectTop(playground, player, coindetect, enemydetect) == true)
                 {
                     player.Top += player.Y;
 
                 }
-                if (player.Y > 0 && Collision.CollisionDetectBottom(playground, player, coindetect) == true)
+                if (player.Y > 0 && Collision.CollisionDetectBottom(playground, player, coindetect, enemydetect) == true)
                 {
                     player.Top += player.Y;
                 }
             }
-            if (Collision.CollisionDetectRight(playground, player, coindetect) == false && Collision.CollisionDetectLeft(playground, player, coindetect) == false)
+            if (Collision.CollisionDetectRight(playground, player, coindetect, enemydetect) == false && Collision.CollisionDetectLeft(playground, player, coindetect, enemydetect) == false)
             {
                 player.Left += player.X;
             }
             else
             {
-                if (player.X < 0 && Collision.CollisionDetectLeft(playground, player, coindetect) == true)
+                if (player.X < 0 && Collision.CollisionDetectLeft(playground, player, coindetect, enemydetect) == true)
                 {
                     player.Left += player.X;
                 }
-                if (player.X > 0 && Collision.CollisionDetectRight(playground, player, coindetect) == true)
+                if (player.X > 0 && Collision.CollisionDetectRight(playground, player, coindetect, enemydetect) == true)
                 {
                     player.Left += player.X;
                 }

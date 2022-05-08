@@ -59,11 +59,7 @@
                     </Rectangle.Fill>
                 </Rectangle>
 
-                <Ellipse x:Name="coin" Width="38" Height="38" Canvas.Left="488" Canvas.Top="424" RenderTransformOrigin="0.553,0.651">
-
-
-
-                </Ellipse>
+                
             </Canvas>
         </ScrollViewer>
     </Canvas>

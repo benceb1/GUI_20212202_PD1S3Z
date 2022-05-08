@@ -26,5 +26,9 @@ namespace _2DPlatformer
                 musicplayer.Play();
             }
         }
+        public void StopMusic()
+        {
+            musicplayer.Stop();
+        }
     }
 }
