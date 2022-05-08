@@ -21,7 +21,7 @@ namespace _2DPlatformer
     /// </summary>
     public partial class MainWindow : Page
     {
-        Player player = new Player(73, 42, 1, 1, true);
+        Player player = new Player(84, 52, 1, 1, true);
         private int attacknumber=1;
         Animation anim = new Animation();
         Animation attackanim = new Animation();

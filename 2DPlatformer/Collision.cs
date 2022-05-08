@@ -187,12 +187,12 @@ namespace _2DPlatformer
                 return left;
             }
         }
-        public static void CollisonDetectAll(Canvas ShapeCanvas, Player playerobj, bool coindetect)
+        public static void CollisonDetectAll(Canvas shapecanvas, Player player, bool coindetect)
         {
-            CollisionDetectTop(ShapeCanvas, playerobj, coindetect);
-            CollisionDetectBottom(ShapeCanvas, playerobj, coindetect);
-            CollisionDetectLeft(ShapeCanvas, playerobj, coindetect);
-            CollisionDetectRight(ShapeCanvas, playerobj, coindetect);
+            CollisionDetectTop(shapecanvas, player, coindetect);
+            CollisionDetectBottom(shapecanvas, player, coindetect);
+            CollisionDetectLeft(shapecanvas, player, coindetect);
+            CollisionDetectRight(shapecanvas, player, coindetect);
         }
     }
 }

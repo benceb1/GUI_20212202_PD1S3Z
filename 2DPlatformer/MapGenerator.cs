@@ -24,24 +24,23 @@ namespace _2DPlatformer
                 double rndRectHeight = rnd.Next(20, 50); //Tile height
                 double rndRectWidth = rnd.Next(100, 500);//Tile width
 
-                double rndX = rnd.Next(i + 50, i + 200);
+                double rndX = rnd.Next(i + 50, i + 200); //X, Y coordinate where tiles is being placed
                 double rndY = rnd.Next(100, 500);        
                 
-                int rndObject = rnd.Next(0, 4); //Tile has coins or not
+                int rndObject = rnd.Next(0, 4);
                 
-                if (rndObject == 1)
+                if (rndObject == 1)  //Tile has coins or not
                 {
-                    int randomaddCoin = rnd.Next(1, 4);
                     int rndWidthint = (int)(rndRectWidth);
                     double tmpX = rndX;
                     int cnt = rndWidthint / 40;
                         for (int a = 0; a < cnt; a++)
-                        {
+                        {                      
                             new Coin(38, 38, playground, tmpX + (40 * a), rndY - 40);
                         }
                     
-                }
-                if (rndObject == 2)
+                } 
+                if (rndObject == 2)  //Tile has slimes or not
                 {
                     int rndWidthint = (int)(rndRectWidth);
                     double tmpX = rndX;
@@ -49,11 +48,8 @@ namespace _2DPlatformer
 
                     for (int a = 0; a < cnt; a++)
                     {
-                        int distance = disR.Next(1, (int)(rndRectWidth / 2));
-                        if((tmpX + (distance * a))/2>rndWidthint)
-                        {
-                            new Slime(42, 30, playground, tmpX + (distance * a), rndY - 30);
-                        }
+                            new Slime(42, 30, playground, tmpX + (45 * a), rndY - 31);
+                     
                         
                     }
                 }
