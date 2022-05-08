@@ -12,7 +12,7 @@ namespace _2DPlatformer
     public static class Effects
     {
 
-        // Fading between pages, currently not working
+        // Fading between pages
 
         public static void Transition<T>(Canvas canvas, Page page)
         {

@@ -22,12 +22,17 @@ namespace _2DPlatformer
     public partial class MainWindow : Page
     {
         Player player = new Player(73, 42, 1, 1, true);
-
+        private int attacknumber=1;
         Animation anim = new Animation();
+        Animation attackanim = new Animation();
         SoundController soundcontroll = new SoundController();
         Task task1;
         Task task2;
         Task task3;
+        Task task4;
+        Task task5;
+        
+        static Random randomattack = new Random();
         public MainWindow()
         {
             DataContext = player;
@@ -39,7 +44,16 @@ namespace _2DPlatformer
             Effects.EndTransiton(game_canvas, MainWindows_Page);
             var PhysicsTimer = new DispatcherTimer();
             var AnimationTimer = new DispatcherTimer();
+            var AttackAnimationTimer = new DispatcherTimer();
             var CoinTimer = new DispatcherTimer();
+            var SlimeTimer = new DispatcherTimer();
+
+            SlimeTimer.Tick += SlimeAnimationTick;
+            SlimeTimer.Interval = new TimeSpan(0, 0, 0, 0, 75);
+
+            AttackAnimationTimer.Tick += AttackAnimationTick;
+            AttackAnimationTimer.Interval = new TimeSpan(0, 0, 0, 0, 200);
+
             PhysicsTimer.Tick += PhysicsTimerTick;
             PhysicsTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
 
@@ -48,13 +62,20 @@ namespace _2DPlatformer
 
             AnimationTimer.Tick += AnimationTimerTick;
             AnimationTimer.Interval = new TimeSpan(0, 0, 0, 0, 140);
+
             task1 = new Task(PhysicsTimer.Start);
             task2 = new Task(AnimationTimer.Start);
             task3 = new Task(CoinTimer.Start);
+            task4 = new Task(AttackAnimationTimer.Start);
+            task5 = new Task(SlimeTimer.Start);
+            
             task1.Start();
             task2.Start();
             task3.Start();
-            ;
+            task4.Start();
+            task5.Start();
+            
+            
 
 
 
@@ -63,6 +84,10 @@ namespace _2DPlatformer
 
 
 
+        }
+        private void AttackAnimationTick(object sender, EventArgs e)
+        {
+            anim.PlayerAttackAnimation(player_canvas, player, attacknumber);
         }
 
         private void PhysicsTimerTick(object sender, EventArgs e)
@@ -80,7 +105,11 @@ namespace _2DPlatformer
 
         public void CoinTimerTick(object sender, EventArgs e)
         {
-            anim.PlayCoinAnimation(game_canvas, player, 600);
+            anim.PlayCoinAnimation(game_canvas);
+        }
+        public void SlimeAnimationTick(object sender, EventArgs e)
+        {
+            anim.PlaySlimeAnimation(game_canvas);
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -91,6 +120,19 @@ namespace _2DPlatformer
             if (e.Key == Key.Escape)
             {
                 this.NavigationService.Navigate(new Titlescreen());
+            }
+            if(e.Key==Key.Space)
+            {
+                player.IsAttacking = true;
+                if(attacknumber<3)
+                {
+                    attacknumber++;
+                }
+                if(attacknumber >=3)
+                {                  
+                    attacknumber = 1;
+                }
+                      
             }
         }
         private void OnGameOver(Player sender, int e)

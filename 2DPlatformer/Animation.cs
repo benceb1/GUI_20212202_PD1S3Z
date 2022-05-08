@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _2DPlatformer.Enemies.Slime;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,13 +8,26 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace _2DPlatformer
 {
     
    
-    class Animation
-    {       
+    public class Animation
+    {
+        List<string> slimechar = new List<string>
+        {
+              "pack://application:,,,/2DPlatformer;component/PNG/Enemies/Slime/Idle1.png",
+              "pack://application:,,,/2DPlatformer;component/PNG/Enemies/Slime/Idle2.png",
+              "pack://application:,,,/2DPlatformer;component/PNG/Enemies/Slime/Idle3.png",
+              "pack://application:,,,/2DPlatformer;component/PNG/Enemies/Slime/Idle4.png",
+              "pack://application:,,,/2DPlatformer;component/PNG/Enemies/Slime/Idle5.png",
+              "pack://application:,,,/2DPlatformer;component/PNG/Enemies/Slime/Idle6.png",
+              "pack://application:,,,/2DPlatformer;component/PNG/Enemies/Slime/Idle7.png",
+              "pack://application:,,,/2DPlatformer;component/PNG/Enemies/Slime/Idle8.png",
+              "pack://application:,,,/2DPlatformer;component/PNG/Enemies/Slime/Idle9.png",         
+        };
         List<string> idlechar = new List<string>
 
         {
@@ -81,9 +95,15 @@ namespace _2DPlatformer
         int playeranimationcounter = 0;
         int playerjumpanimationcounter = 0;
         int playerfallanimationcounter = 0;
+        int playerattack1animationcounter = 0;
+        int playerattack2animationcounter = 0;
+        int playerattack3animationcounter = 0;
         int coinCounter = 0;
+        int slimeCounter = 0;
         public void PlayerAnimation(Rectangle PlayerCanvas, Player player)
         {
+            if (player.IsAttacking == false) 
+            { 
             if (player.X == 0 && player.Y==0)
             {
                 if (playeranimationcounter >= idlechar.Count)
@@ -152,6 +172,62 @@ namespace _2DPlatformer
                 playerfallanimationcounter++;
                 playerjumpanimationcounter++;
             }
+            }
+        }
+        public void PlayerAttackAnimation(Rectangle playercanvas,Player player, int attacknumber)
+        {
+            if (player.IsAttacking == true)
+            {
+                    if (playerattack1animationcounter >= attackanim1.Count)
+                    {
+                        playerattack1animationcounter = 0;
+                        player.IsAttacking = false;
+                    }
+                    if (playerattack2animationcounter >= attackanim2.Count)
+                    {
+                        playerattack2animationcounter = 0;
+                        player.IsAttacking = false;
+                    }
+                    if (playerattack3animationcounter >= attackanim3.Count)
+                    {
+                        playerattack3animationcounter = 0;
+                        player.IsAttacking = false;
+                    }
+                    if (attacknumber == 1)
+                    {
+
+                            playercanvas.Fill = new ImageBrush
+                            {
+                                ImageSource = new BitmapImage(new Uri(attackanim1[playerattack1animationcounter], UriKind.Absolute))
+                            };
+                        
+                    }
+                    else if (attacknumber == 2)
+                    {
+                            playercanvas.Fill = new ImageBrush
+                            {
+                                ImageSource = new BitmapImage(new Uri(attackanim2[playerattack2animationcounter], UriKind.Absolute))
+                            };
+                        
+                    }
+                    else if (attacknumber == 3)
+                    {
+                            playercanvas.Fill = new ImageBrush
+                            {
+                                ImageSource = new BitmapImage(new Uri(attackanim3[playerattack3animationcounter], UriKind.Absolute))
+                            };
+                        
+                    }
+                playerattack1animationcounter++;
+                playerattack2animationcounter++;
+                playerattack3animationcounter++;
+
+
+
+
+
+
+            }
         }
         public void CoinAnimation(Shape coin)
         {
@@ -165,7 +241,38 @@ namespace _2DPlatformer
             };
             coinCounter++;
         }
-        public void PlayCoinAnimation(Canvas playground, Player player, double visibleOffset)
+        public void SlimeAnimation(Rectangle rect)
+        {
+            if (slimeCounter >= slimechar.Count)
+            {
+                slimeCounter = 0;
+            }
+            rect.Fill = new ImageBrush
+            {
+                ImageSource = new BitmapImage(new Uri(slimechar[slimeCounter], UriKind.Absolute))
+            };
+            slimeCounter++;
+        }
+        public void PlaySlimeAnimation(Canvas playground)
+        {
+            if (slimeCounter >= slimechar.Count)
+            {
+                slimeCounter = 0;
+            }
+            foreach (Shape element in playground.Children)
+            {
+                if (Equals(element.GetType(), typeof(Rectangle)) && element.Name=="Slime")
+                {
+                    element.Fill = new ImageBrush
+                    {
+                        ImageSource = new BitmapImage(new Uri(slimechar[slimeCounter], UriKind.Absolute))
+                    };
+                }
+
+            }
+            slimeCounter++;
+        }
+        public void PlayCoinAnimation(Canvas playground)
         {
 
             if (coinCounter >= coinanimation.Count)
@@ -174,7 +281,7 @@ namespace _2DPlatformer
             }
             foreach (Shape element in playground.Children)
             {
-                if (Equals(element.GetType(), typeof(Ellipse)) && (Canvas.GetLeft(element) > player.Left - visibleOffset && Canvas.GetLeft(element) < player.Left + visibleOffset))
+                if (Equals(element.GetType(), typeof(Ellipse)))
                 {
                     element.Fill = new ImageBrush
                     {

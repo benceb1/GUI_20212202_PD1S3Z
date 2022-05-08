@@ -10,7 +10,6 @@ namespace _2DPlatformer
 {
     static class Controller
     {
-
         public static double MoveX(object sender, KeyEventArgs e, double x, double changeX)
         {
             if (e.Key == Key.A)

@@ -17,6 +17,7 @@ namespace _2DPlatformer
             Width = width;
             Height = height;
             ground = _ground;
+            ellipse.Name = "Coin";
 
             ellipse.Width = Width;
             ellipse.Height = Height;

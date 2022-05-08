@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _2DPlatformer
 {
-    class Player : _2DPlatformerObject
+    public class Player : _2DPlatformerObject
     {
         public delegate void GameOverEventHandler(Player sender, int e);
         public event GameOverEventHandler GameOver;
@@ -21,6 +21,9 @@ namespace _2DPlatformer
 
         private bool endofgame = false;
         private bool singleplayer;
+        private int health = 100;
+        private bool isAttacking = false;
+        private bool isDealingDamage;
         private int experience = 0; // Experience of the player
         private int coinCounter = 0; //Ammount of coin picked up
 
@@ -35,9 +38,24 @@ namespace _2DPlatformer
             Width = width;
             Left = left;
             Top = top;
+            Health = health;
+            isDealingDamage = false;
 
             
             
+        }
+        public bool IsDealingDamage
+        {
+            get { return isDealingDamage; }
+            set
+            {
+                isDealingDamage = value;
+            }
+        }
+        public bool IsAttacking
+        {
+            get { return isAttacking; }
+            set { isAttacking = value; }
         }
         public int CoinCounter
         {
@@ -54,6 +72,15 @@ namespace _2DPlatformer
             get { return y; }
             set { y = value; 
                 NotifyPropertyChanged(); 
+            }
+        }
+        public int Health
+        {
+            get { return health; }
+            set
+            {
+                health = value;
+                NotifyPropertyChanged();
             }
         }
         public double VelocityX

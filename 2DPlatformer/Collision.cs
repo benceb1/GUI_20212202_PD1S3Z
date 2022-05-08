@@ -25,6 +25,7 @@ namespace _2DPlatformer
                         i++;
                         removelist.AddLast(xy);
                         player.CoinCounter++;
+                        player.Experience = player.Experience + 2;
                     }
                 }
                 else
@@ -69,6 +70,7 @@ namespace _2DPlatformer
                         i++;
                         removelist.AddLast(element);
                         player.CoinCounter++;
+                        player.Experience = player.Experience + 2;
                     }
                 }
                 else
@@ -111,6 +113,7 @@ namespace _2DPlatformer
                         i++;
                         removelist.AddLast(xy);
                         player.CoinCounter++;
+                        player.Experience = player.Experience + 2;
                     }
                 }
                 else
@@ -156,6 +159,7 @@ namespace _2DPlatformer
                         i++;
                         removelist.AddLast(xy);
                         player.CoinCounter++;
+                        player.Experience = player.Experience + 2;
                     }
                 }
                 else

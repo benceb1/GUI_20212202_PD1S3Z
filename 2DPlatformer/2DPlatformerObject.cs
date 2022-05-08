@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace _2DPlatformer
 {
-    abstract class _2DPlatformerObject : INotifyPropertyChanged
+    public abstract class _2DPlatformerObject : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected double height;
