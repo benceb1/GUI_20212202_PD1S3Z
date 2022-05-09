@@ -150,6 +150,7 @@ namespace _2DPlatformer
         {
             player.Health = 100;
             player.Experience = 0;
+            player.Level = 0;
             GameDatabase.SavePlayer(player.ToPlayerModel());
 
             var result = MessageBox.Show("Try again?", "Game Over", MessageBoxButton.YesNo);
