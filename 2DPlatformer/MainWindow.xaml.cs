@@ -22,7 +22,7 @@ namespace _2DPlatformer
     /// </summary>
     public partial class MainWindow : Page
     {
-        Player player = new Player(80, 50, 1, 1, true);
+        Player player;
         private int attacknumber=1;
         Animation anim = new Animation();
         List<Projectile> projectiles = new List<Projectile>();
@@ -38,6 +38,7 @@ namespace _2DPlatformer
 
         public MainWindow(PlayerModel playerModel)
         {
+            this.player = new Player(80, 50, 1, 1, true, playerModel);
             DataContext = player;
             InitializeComponent();
             soundcontroll.PlayMusic();
@@ -125,7 +126,7 @@ namespace _2DPlatformer
 
             if (e.Key == Key.Escape)
             {
-
+                GameDatabase.SavePlayer(player.ToPlayerModel());
                 this.NavigationService.Navigate(new Titlescreen());
             }
             if(e.Key==Key.Space)
@@ -147,6 +148,10 @@ namespace _2DPlatformer
         }
         private void OnGameOver(Player sender, int e)
         {
+            player.Health = 100;
+            player.Experience = 0;
+            GameDatabase.SavePlayer(player.ToPlayerModel());
+
             var result = MessageBox.Show("Try again?", "Game Over", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {

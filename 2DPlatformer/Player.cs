@@ -65,7 +65,13 @@ namespace _2DPlatformer
 
         public Player(double height, double width, double left, double top, bool _singleplayer, PlayerModel playerModel) : this(height, width, left, top, _singleplayer)
         {
-            
+            this.id = playerModel.Id;
+            this.name = playerModel.Name;
+            this.experience = playerModel.Experience;
+            this.level = playerModel.Level;
+            this.coinCounter = playerModel.CoinCounter;
+            this.slimeKilled = playerModel.SlimeKilled;
+            this.health = playerModel.Health;
         }
 
         public int SlimeKilled
