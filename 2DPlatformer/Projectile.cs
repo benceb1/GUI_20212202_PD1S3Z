@@ -40,4 +40,3 @@ namespace _2DPlatformer
         }
     }
 }
-}

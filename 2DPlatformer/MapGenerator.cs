@@ -44,11 +44,12 @@ namespace _2DPlatformer
                 {
                     int rndWidthint = (int)(rndRectWidth);
                     double tmpX = rndX;
-                    int cnt = rndWidthint / 84;
-
-                    for (int a = 0; a < cnt; a++)
+                    int cnt = rndWidthint / 100;
+                    
+                    for (int a = 1; a < cnt; a++)
                     {
-                            new Slime(42, 30, playground, tmpX + (45 * a), rndY - 31);
+                        int randomdistance = disR.Next(50, 120);
+                        new Slime(42, 30, playground, tmpX + (randomdistance * a), rndY - 32);
                      
                         
                     }
