@@ -63,6 +63,9 @@
     <None Remove="PNG\Enemies\Slime\Idle7.png" />
     <None Remove="PNG\Enemies\Slime\Idle8.png" />
     <None Remove="PNG\Enemies\Slime\Idle9.png" />
+    <None Remove="PNG\Projectile\projectile7-1.png" />
+    <None Remove="PNG\Projectile\projectile7-2.png" />
+    <None Remove="PNG\Projectile\projectile7-3.png" />
     <None Remove="PNG\TextBlock\Textblock.png" />
     <None Remove="PNG\Tile\Tile.png" />
     <None Remove="Sounds\Music\TitleMusic.mp3" />
@@ -126,6 +129,9 @@
     <Resource Include="PNG\Enemies\Slime\Idle7.png" />
     <Resource Include="PNG\Enemies\Slime\Idle8.png" />
     <Resource Include="PNG\Enemies\Slime\Idle9.png" />
+    <Resource Include="PNG\Projectile\projectile7-1.png" />
+    <Resource Include="PNG\Projectile\projectile7-2.png" />
+    <Resource Include="PNG\Projectile\projectile7-3.png" />
     <Resource Include="PNG\TextBlock\Textblock.png" />
     <Resource Include="PNG\Tile\Tile.png" />
     <Content Include="Sounds\Music\TitleMusic.mp3">

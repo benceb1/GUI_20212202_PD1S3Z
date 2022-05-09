@@ -4,39 +4,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Shapes;
 
 namespace _2DPlatformer
 {
-    public class Projectile
+    public class Projectile :_2DPlatformerObject
     {
-        public Projectile(System.Drawing.Point center, Vector speed)
+        Rectangle rectangle = new Rectangle();
+        Canvas ground;
+        private int damage = 10;
+        public int Damage
         {
-            Center = center;
-            Speed = speed;
+            get { return damage; }
+            set
+            {
+                damage = value;
+            }
         }
-
-        public System.Drawing.Point Center { get; set; }
-
-        public Vector Speed { get; set; }
-
-        public bool Move(System.Drawing.Size area)
+        public Projectile(double width, double height, Canvas _ground, double left, double top)
         {
-            System.Drawing.Point newCenter =
-                new System.Drawing.Point(Center.X + (int)Speed.X,
-                Center.Y + (int)Speed.Y);
-            if (newCenter.X >= 0 &&
-                newCenter.X <= area.Width &&
-                newCenter.Y >= 0 &&
-                newCenter.Y <= area.Height
-                )
-            {
-                Center = newCenter;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            Width = width;
+            Height = height;
+            ground = _ground;
+
+            rectangle.Width = Width;
+            rectangle.Height = Height;
+            rectangle.Name = "Projectile";
+            ground.Children.Add(rectangle);
+            Canvas.SetLeft(rectangle, left);
+            Canvas.SetTop(rectangle, top);
         }
     }
 }
