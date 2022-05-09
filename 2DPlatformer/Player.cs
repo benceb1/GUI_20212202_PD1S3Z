@@ -19,8 +19,6 @@ namespace _2DPlatformer
         private double velocityX = 3; // Change in velocity during movement
         private double velocityY = 6; // Change in velocity during movement
 
-
-
         private bool endofgame = false;
         private bool singleplayer;
         private int health = 100;
@@ -33,6 +31,7 @@ namespace _2DPlatformer
         private int experience = 0; // Experience of the player
         private int level = 1;
         private int coinCounter = 0; //Ammount of coin picked up
+        private int slimeKilled = 0;
         public void playerDamaged()
         {
             IsDamaged = true;
@@ -52,10 +51,6 @@ namespace _2DPlatformer
              };
         }
 
-        
-
-
-
         public Player(double height, double width, double left, double top, bool _singleplayer)
         {
             Singleplayer = _singleplayer;
@@ -68,6 +63,12 @@ namespace _2DPlatformer
             
             
         }
+        public int SlimeKilled
+        {
+            get { return slimeKilled; }
+            set { slimeKilled = value; NotifyPropertyChanged(); }
+        }
+
         public bool CanUseBow()
         {
             if (this.Level >= 2)

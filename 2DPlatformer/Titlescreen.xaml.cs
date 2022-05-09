@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _2DPlatformer.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,13 +25,17 @@ namespace _2DPlatformer
         public Titlescreen()
         {
             InitializeComponent();
+            TitleScreenViewModel viewModel = new TitleScreenViewModel();
+            viewModel.SetupCanvas(title_canvas);
+            this.DataContext = viewModel;
         }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
             if (clck == 0)
             {
-                Effects.Transition<MainWindow>(title_canvas, Title_page);
+                //Effects.Transition<MainWindow>(title_canvas, Title_page);
                 //Title_page.NavigationService.Navigate(new MainWindow());
                 clck++;
             }

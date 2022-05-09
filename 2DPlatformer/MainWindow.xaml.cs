@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _2DPlatformer.GameMongoClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,8 +33,10 @@ namespace _2DPlatformer
         Task task4;
         Task task5;
         Task task6;
-       
-        public MainWindow()
+
+        static Random randomattack = new Random();
+
+        public MainWindow(PlayerModel playerModel)
         {
             DataContext = player;
             InitializeComponent();
@@ -82,14 +85,6 @@ namespace _2DPlatformer
             task6.Start();
 
             player.GameOver += OnGameOver;
-
-
-
-
-
-
-
-
         }
 
         private void AttackAnimationTick(object sender, EventArgs e)

@@ -16,17 +16,13 @@ using System.Windows.Shapes;
 namespace _2DPlatformer
 {
     /// <summary>
-    /// Interaction logic for StartupWindow.xaml
+    /// Interaction logic for PlayerListPage.xaml
     /// </summary>
-    public partial class StartupWindow : Window
+    public partial class PlayerListPage : Page
     {
-        public static Frame PublicStartupFrame { get; set; }
-        public StartupWindow()
+        public PlayerListPage()
         {
             InitializeComponent();
-            PublicStartupFrame = startupFrame;
-
-            startupFrame.NavigationService.Navigate(new Titlescreen());
         }
     }
 }
