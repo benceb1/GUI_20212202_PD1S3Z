@@ -17,8 +17,6 @@ namespace _2DPlatformer
         private double velocityX = 3; // Change in velocity during movement
         private double velocityY = 6; // Change in velocity during movement
 
-
-
         private bool endofgame = false;
         private bool singleplayer;
         private int health = 100;
@@ -26,10 +24,6 @@ namespace _2DPlatformer
         private bool isDealingDamage;
         private int experience = 0; // Experience of the player
         private int coinCounter = 0; //Ammount of coin picked up
-
-        
-
-
 
         public Player(double height, double width, double left, double top, bool _singleplayer)
         {
@@ -40,9 +34,6 @@ namespace _2DPlatformer
             Top = top;
             Health = health;
             isDealingDamage = false;
-
-            
-            
         }
         public bool IsDealingDamage
         {
@@ -126,8 +117,6 @@ namespace _2DPlatformer
             get { return singleplayer; }
             set { singleplayer = value; }
         }
-        
-
 
         public virtual void OnGameOver()
         {

@@ -4,8 +4,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:_2DPlatformer"
+      xmlns:vms="clr-namespace:_2DPlatformer.ViewModels"
       mc:Ignorable="d"
       Title="Titlescreen" Background="Black" Width="1024" Height="768">
+   
     <Page.Resources>
         <FontFamily x:Key="futura">pack://application:,,,/Fonts/#futur</FontFamily>
         <Style TargetType="{x:Type Button}">
@@ -30,8 +32,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-
     </Page.Resources>
     
     <Canvas x:Name="title_canvas" Width="1024" Height="768">
@@ -44,13 +44,40 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Button FontFamily="{StaticResource futura}" Grid.Row="1" Content="Start" Width="316" Click="Button_Click" FontSize="42" HorizontalAlignment="Center" VerticalAlignment="Center" Height="275" BorderBrush="{x:Null}" Panel.ZIndex="3">
+            <Label FontFamily="{StaticResource futura}" Foreground="Pink" Content="Player name:" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="150,0,0,0"
+                   FontSize="42"/>
+            <TextBox FontSize="32" Text="{Binding PlayerName}" Grid.Row="1" Width="700" Height="50" />
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    
+                </Grid.ColumnDefinitions>
+                <Button FontFamily="{StaticResource futura}"  Content="Start" Width="400" Command="{Binding LoginPlayerCommand}"
+                        FontSize="42" HorizontalAlignment="Right" VerticalAlignment="Center" Height="275" BorderBrush="{x:Null}" Panel.ZIndex="3">
+                    <Button.Background>
+                        <ImageBrush ImageSource="PNG/Button/10.png"/>
+                    </Button.Background>
+                </Button>
+
+                <Button Grid.Column="1" FontFamily="{StaticResource futura}"  Content="Create" Width="400" Command="{Binding CreatePlayerCommand}"
+                        FontSize="42" HorizontalAlignment="Left" VerticalAlignment="Center" Height="275" BorderBrush="{x:Null}" Panel.ZIndex="3">
+                    <Button.Background>
+                        <ImageBrush ImageSource="PNG/Button/10.png"/>
+                    </Button.Background>
+                </Button>
+            </Grid>
+
+            <Button FontFamily="{StaticResource futura}" Grid.Row="3" Content="List Players" Width="870" FontSize="42"
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Height="275" BorderBrush="{x:Null}" Panel.ZIndex="3" Command="{Binding ListPlayersCommand}">
                 <Button.Background>
                     <ImageBrush ImageSource="PNG/Button/10.png"/>
                 </Button.Background>
             </Button>
-
-            <Button FontFamily="{StaticResource futura}" Grid.Row="3" Content="Exit" Width="316" Click="Button_Click_1" FontSize="42" HorizontalAlignment="Center" VerticalAlignment="Center" Height="275" BorderBrush="{x:Null}" Panel.ZIndex="3" >
+            
+            <Button FontFamily="{StaticResource futura}" Grid.Row="4" Content="Exit" Width="870" Click="Button_Click_1" FontSize="42"
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Height="275" BorderBrush="{x:Null}" Panel.ZIndex="3" >
                 <Button.Background>
                     <ImageBrush ImageSource="PNG/Button/10.png"/>
                 </Button.Background>

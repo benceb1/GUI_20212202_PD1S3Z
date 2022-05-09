@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _2DPlatformer.GameMongoClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace _2DPlatformer
 
         // Fading between pages
 
-        public static void Transition<T>(Canvas canvas, Page page)
+        public static void Transition<T>(Canvas canvas, PlayerModel playerModel)
         {
             int counter = 0;
             var dispatcherTimer = new DispatcherTimer();
@@ -24,7 +25,6 @@ namespace _2DPlatformer
 
             void dispatcherTimer_Tick(object sender, EventArgs e)
             {
-
                 if (counter != 100)
                 {
                     canvas.Opacity = canvas.Opacity -= 0.05;
@@ -32,12 +32,11 @@ namespace _2DPlatformer
                 else if (counter == 100)
                 {
                     canvas.Opacity = 100;
-                    page.NavigationService.Navigate((T)Activator.CreateInstance(typeof(T)));
+                    //page.NavigationService.Navigate((T)Activator.CreateInstance(typeof(T)));
+                    StartupWindow.PublicStartupFrame.NavigationService.Navigate(new MainWindow(playerModel));
                 }
                 counter += 1;
             }
-
-
         }
 
         // Fading out 
