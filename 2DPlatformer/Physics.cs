@@ -11,7 +11,7 @@ namespace _2DPlatformer
     {
         public static void Gravity(Canvas map, Player player)
         {
-            if (Collision.CollisionDetectTop(map, player, false) == false)
+            if (Collision.CollisionDetectTop(map, player, false,false) == false)
             {
                 player.Y += 0.15;
             }

@@ -13,7 +13,7 @@ namespace _2DPlatformer.Enemies.Slime
         Rectangle rectangle = new Rectangle();
         Canvas ground;
         private int damage = 10;
-        private int health = 30;
+        private int health = 10;
         public int Damage
         {
             get { return damage; }

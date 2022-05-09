@@ -92,6 +92,12 @@ namespace _2DPlatformer
             "pack://application:,,,/2DPlatformer;component/PNG/Character/adventurer-fall-00.png",
               "pack://application:,,,/2DPlatformer;component/PNG/Character/adventurer-fall-01.png"
         };
+        List<string> projectileanimation = new List<string>
+        {
+              "pack://application:,,,/2DPlatformer;component/PNG/Projectile/projectile7-1.png",
+              "pack://application:,,,/2DPlatformer;component/PNG/Projectile/projectile7-2.png",
+              "pack://application:,,,/2DPlatformer;component/PNG/Projectile/projectile7-3.png"
+        };
         int playeranimationcounter = 0;
         int playerjumpanimationcounter = 0;
         int playerfallanimationcounter = 0;
@@ -100,6 +106,23 @@ namespace _2DPlatformer
         int playerattack3animationcounter = 0;
         int coinCounter = 0;
         int slimeCounter = 0;
+        int projectileanimcounter = 0;
+        public void ProjectileAnimation(Rectangle PlayerCanvas,Player player)
+        {
+            if (player.IsFiring == true&&player.Level>=2)
+            {
+                if (projectileanimcounter >= projectileanimation.Count)
+                {
+                    projectileanimcounter = 0;
+                    player.IsFiring = false;
+                }
+                PlayerCanvas.Fill = new ImageBrush
+                {
+                    ImageSource = new BitmapImage(new Uri(projectileanimation[projectileanimcounter], UriKind.Absolute))
+                };
+                projectileanimcounter++;
+            }
+        }
         public void PlayerAnimation(Rectangle PlayerCanvas, Player player)
         {
             if (player.IsAttacking == false) 
@@ -221,13 +244,8 @@ namespace _2DPlatformer
                 playerattack1animationcounter++;
                 playerattack2animationcounter++;
                 playerattack3animationcounter++;
-
-
-
-
-
-
             }
+            
         }
         public void CoinAnimation(Shape coin)
         {

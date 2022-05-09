@@ -22,18 +22,20 @@ namespace _2DPlatformer
     /// </summary>
     public partial class MainWindow : Page
     {
-        Player player = new Player(84, 52, 1, 1, true);
+        Player player = new Player(80, 50, 1, 1, true);
         private int attacknumber=1;
         Animation anim = new Animation();
-        Animation attackanim = new Animation();
+        List<Projectile> projectiles = new List<Projectile>();
         SoundController soundcontroll = new SoundController();
         Task task1;
         Task task2;
         Task task3;
         Task task4;
         Task task5;
-        
+        Task task6;
+
         static Random randomattack = new Random();
+
         public MainWindow(PlayerModel playerModel)
         {
             DataContext = player;
@@ -48,6 +50,10 @@ namespace _2DPlatformer
             var AttackAnimationTimer = new DispatcherTimer();
             var CoinTimer = new DispatcherTimer();
             var SlimeTimer = new DispatcherTimer();
+            var ProjectileTimer= new DispatcherTimer();
+
+            ProjectileTimer.Tick += ProjectileTick;
+            ProjectileTimer.Interval= new TimeSpan(0, 0, 0, 0, 75);
 
             SlimeTimer.Tick += SlimeAnimationTick;
             SlimeTimer.Interval = new TimeSpan(0, 0, 0, 0, 75);
@@ -69,12 +75,14 @@ namespace _2DPlatformer
             task3 = new Task(CoinTimer.Start);
             task4 = new Task(AttackAnimationTimer.Start);
             task5 = new Task(SlimeTimer.Start);
-            
+            task6 = new Task(ProjectileTimer.Start);
+
             task1.Start();
             task2.Start();
             task3.Start();
             task4.Start();
             task5.Start();
+            task6.Start();
 
             player.GameOver += OnGameOver;
         }
@@ -86,15 +94,19 @@ namespace _2DPlatformer
 
         private void PhysicsTimerTick(object sender, EventArgs e)
         {
-            Controller.PlayerMove(game_canvas, player, true);
+            Controller.PlayerMove(game_canvas, player, true,true);
             Physics.Gravity(game_canvas, player);
             CameraFollow.CameraFollowPlayer(player, Scroller, 250);
-            Effects.IngameParallexBackground4(background1, background2, background3, background4, background5, background6, background7, background8, 1,player.X ,MainWindows_Page.ActualWidth, Collision.CollisionDetectLeft(game_canvas, player, false), Collision.CollisionDetectRight(game_canvas, player, false));
+            Effects.IngameParallexBackground4(background1, background2, background3, background4, background5, background6, background7, background8, 1,player.X ,MainWindows_Page.ActualWidth, Collision.CollisionDetectLeft(game_canvas, player, false,false), Collision.CollisionDetectRight(game_canvas, player, false,false));
         }
         private void AnimationTimerTick(object sender, EventArgs e)
         {
             anim.PlayerAnimation(player_canvas, player);
 
+        }
+        private void ProjectileTick(object sender,EventArgs e)
+        {
+            anim.ProjectileAnimation(player_canvas, player);
         }
 
         public void CoinTimerTick(object sender, EventArgs e)
@@ -109,10 +121,11 @@ namespace _2DPlatformer
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             player.X = Controller.MoveX(sender, e, player.X, player.VelocityX);
-            player.Y = Controller.MoveY(sender, e, player.Y, player.VelocityY, Collision.CollisionDetectTop(game_canvas, player, false));
+            player.Y = Controller.MoveY(sender, e, player.Y, player.VelocityY, Collision.CollisionDetectTop(game_canvas, player, false,false));
 
             if (e.Key == Key.Escape)
             {
+
                 this.NavigationService.Navigate(new Titlescreen());
             }
             if(e.Key==Key.Space)
@@ -125,8 +138,11 @@ namespace _2DPlatformer
                 if(attacknumber >=3)
                 {                  
                     attacknumber = 1;
-                }
-                      
+                }                   
+            }
+            if(e.Key==Key.LeftShift)
+            {
+               // player.IsFiring = true;
             }
         }
         private void OnGameOver(Player sender, int e)
@@ -134,6 +150,7 @@ namespace _2DPlatformer
             var result = MessageBox.Show("Try again?", "Game Over", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
+                soundcontroll.StopMusic();
                 NavigationService.Navigate(new Titlescreen());
             }
             if (result == MessageBoxResult.No)

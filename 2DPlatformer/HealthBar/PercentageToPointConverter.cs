@@ -19,11 +19,11 @@ namespace _2DPlatformer.HealthBar
             {
                 return Brushes.LawnGreen;
             }
-            if (number < 80 && number > 60)
+            if (number <= 80 && number > 60)
                 return Brushes.LimeGreen;
-            if (number < 60 && number > 40)
+            if (number <= 60 && number > 40)
                 return Brushes.DarkOrange;
-            if (number < 40 && number > 20)
+            if (number <= 40 && number > 20)
                 return Brushes.OrangeRed;
             else return Brushes.Red;
         }
