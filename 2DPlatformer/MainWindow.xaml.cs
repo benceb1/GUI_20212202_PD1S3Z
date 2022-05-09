@@ -107,7 +107,7 @@ namespace _2DPlatformer
         }
         private void ProjectileTick(object sender,EventArgs e)
         {
-            anim.ProjectileAnimation(player_canvas, player);
+            anim.ProjectileAnimation(game_canvas,player_canvas, player);
         }
 
         public void CoinTimerTick(object sender, EventArgs e)
@@ -143,7 +143,7 @@ namespace _2DPlatformer
             }
             if(e.Key==Key.LeftShift)
             {
-               // player.IsFiring = true;
+               player.IsFiring = true;
             }
         }
         private void OnGameOver(Player sender, int e)

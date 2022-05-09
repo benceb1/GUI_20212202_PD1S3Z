@@ -107,19 +107,17 @@ namespace _2DPlatformer
         int coinCounter = 0;
         int slimeCounter = 0;
         int projectileanimcounter = 0;
-        public void ProjectileAnimation(Rectangle PlayerCanvas,Player player)
+        public void ProjectileAnimation(Canvas gamecanvas,Rectangle PlayerCanvas,Player player)
         {
-            if (player.IsFiring == true&&player.Level>=2)
+            if (player.IsFiring == true&&player.Level>=1)
             {
                 if (projectileanimcounter >= projectileanimation.Count)
                 {
                     projectileanimcounter = 0;
                     player.IsFiring = false;
                 }
-                PlayerCanvas.Fill = new ImageBrush
-                {
-                    ImageSource = new BitmapImage(new Uri(projectileanimation[projectileanimcounter], UriKind.Absolute))
-                };
+                new Projectile(40, 4, gamecanvas, PlayerCanvas.Width + player.Width + 10, PlayerCanvas.Height + player.Height / 2 + 10);
+               
                 projectileanimcounter++;
             }
         }
