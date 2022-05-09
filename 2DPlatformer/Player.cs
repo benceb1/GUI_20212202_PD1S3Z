@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _2DPlatformer.GameMongoClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,8 +12,8 @@ namespace _2DPlatformer
     {
         public delegate void GameOverEventHandler(Player sender, int e);
         public event GameOverEventHandler GameOver;
-        
 
+        private string id;
         private double x; //Current X velocity of character 
         private double y; //Current Y velocity of character 
 
@@ -32,6 +33,7 @@ namespace _2DPlatformer
         private int level = 1;
         private int coinCounter = 0; //Ammount of coin picked up
         private int slimeKilled = 0;
+        private string name;
         public void playerDamaged()
         {
             IsDamaged = true;
@@ -59,10 +61,13 @@ namespace _2DPlatformer
             Left = left;
             Top = top;
             Health = health;
+        }
 
-            
+        public Player(double height, double width, double left, double top, bool _singleplayer, PlayerModel playerModel) : this(height, width, left, top, _singleplayer)
+        {
             
         }
+
         public int SlimeKilled
         {
             get { return slimeKilled; }
@@ -198,7 +203,12 @@ namespace _2DPlatformer
             get { return singleplayer; }
             set { singleplayer = value; }
         }
-     
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
 
         public virtual void OnGameOver()
         {
@@ -206,6 +216,20 @@ namespace _2DPlatformer
             {
                 GameOver?.Invoke(this, Experience);
             }
+        }
+
+        public PlayerModel ToPlayerModel()
+        {
+            return new PlayerModel()
+            {
+                Id = this.id,
+                CoinCounter = this.CoinCounter,
+                Experience = this.Experience,
+                Health = this.Health,
+                Level = this.Level,
+                Name = this.Name,
+                SlimeKilled = this.SlimeKilled
+            };
         }
     }
 }
