@@ -31,6 +31,7 @@ namespace _2DPlatformer
         private int experience = 0; // Experience of the player
         private int level = 1;
         private int coinCounter = 0; //Ammount of coin picked up
+        private int slimeKilled = 0;
         public void playerDamaged()
         {
             IsDamaged = true;
@@ -62,6 +63,12 @@ namespace _2DPlatformer
             
             
         }
+        public int SlimeKilled
+        {
+            get { return slimeKilled; }
+            set { slimeKilled = value; NotifyPropertyChanged(); }
+        }
+
         public bool CanUseBow()
         {
             if (this.Level >= 2)

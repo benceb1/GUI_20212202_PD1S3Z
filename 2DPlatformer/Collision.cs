@@ -24,6 +24,7 @@ namespace _2DPlatformer
                     {
                         i++;
                         removelist.AddLast(xy);
+                        player.SlimeKilled++;
                         player.Experience = player.Experience + 5;
                     }
                 }
@@ -83,6 +84,7 @@ namespace _2DPlatformer
                     {
                         i++;
                         removelist.AddLast(xy);
+                        player.SlimeKilled++;
                         player.Experience = player.Experience + 5;
                     }
                 }
@@ -139,6 +141,7 @@ namespace _2DPlatformer
                     {
                         i++;
                         removelist.AddLast(xy);
+                        player.SlimeKilled++;
                         player.Experience = player.Experience + 5;
                     }
                 }
@@ -199,6 +202,7 @@ namespace _2DPlatformer
                     {
                         i++;
                         removelist.AddLast(xy);
+                        player.SlimeKilled++;
                         player.Experience = player.Experience + 5;
                     }
                 }
