@@ -24,13 +24,14 @@ namespace _2DPlatformer
         Player player = new Player(80, 50, 1, 1, true);
         private int attacknumber=1;
         Animation anim = new Animation();
-        Animation attackanim = new Animation();
+        List<Projectile> projectiles = new List<Projectile>();
         SoundController soundcontroll = new SoundController();
         Task task1;
         Task task2;
         Task task3;
         Task task4;
         Task task5;
+        Task task6;
        
         public MainWindow()
         {
@@ -46,6 +47,10 @@ namespace _2DPlatformer
             var AttackAnimationTimer = new DispatcherTimer();
             var CoinTimer = new DispatcherTimer();
             var SlimeTimer = new DispatcherTimer();
+            var ProjectileTimer= new DispatcherTimer();
+
+            ProjectileTimer.Tick += ProjectileTick;
+            ProjectileTimer.Interval= new TimeSpan(0, 0, 0, 0, 75);
 
             SlimeTimer.Tick += SlimeAnimationTick;
             SlimeTimer.Interval = new TimeSpan(0, 0, 0, 0, 75);
@@ -67,12 +72,14 @@ namespace _2DPlatformer
             task3 = new Task(CoinTimer.Start);
             task4 = new Task(AttackAnimationTimer.Start);
             task5 = new Task(SlimeTimer.Start);
-            
+            task6 = new Task(ProjectileTimer.Start);
+
             task1.Start();
             task2.Start();
             task3.Start();
             task4.Start();
             task5.Start();
+            task6.Start();
 
             player.GameOver += OnGameOver;
 
@@ -101,6 +108,10 @@ namespace _2DPlatformer
         {
             anim.PlayerAnimation(player_canvas, player);
 
+        }
+        private void ProjectileTick(object sender,EventArgs e)
+        {
+            anim.ProjectileAnimation(player_canvas, player);
         }
 
         public void CoinTimerTick(object sender, EventArgs e)
@@ -132,8 +143,11 @@ namespace _2DPlatformer
                 if(attacknumber >=3)
                 {                  
                     attacknumber = 1;
-                }
-                      
+                }                   
+            }
+            if(e.Key==Key.LeftShift)
+            {
+               // player.IsFiring = true;
             }
         }
         private void OnGameOver(Player sender, int e)

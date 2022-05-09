@@ -11,6 +11,7 @@ namespace _2DPlatformer
     {
         public delegate void GameOverEventHandler(Player sender, int e);
         public event GameOverEventHandler GameOver;
+        
 
         private double x; //Current X velocity of character 
         private double y; //Current Y velocity of character 
@@ -23,12 +24,14 @@ namespace _2DPlatformer
         private bool endofgame = false;
         private bool singleplayer;
         private int health = 100;
+        private int xpneededtolvlup = 10;
         private bool isAttacking = false;
-        private bool isDealingDamage = false;
+        private bool isFiring = false;
         private bool isDamaged = false;
         
         
         private int experience = 0; // Experience of the player
+        private int level = 1;
         private int coinCounter = 0; //Ammount of coin picked up
         public void playerDamaged()
         {
@@ -61,11 +64,26 @@ namespace _2DPlatformer
             Left = left;
             Top = top;
             Health = health;
-            isDealingDamage = false;
-            isDamaged = false;
 
             
             
+        }
+        public bool CanUseBow()
+        {
+            if (this.Level >= 2)
+            {
+                return true;
+            }
+            else return false;
+        }
+        public int Level
+        {
+            get { return level; }
+            set
+            {
+                level = value;
+                NotifyPropertyChanged();
+            }
         }
         public bool IsDamaged
         {
@@ -74,18 +92,18 @@ namespace _2DPlatformer
                 isDamaged = value;
             }
         }
-        public bool IsDealingDamage
-        {
-            get { return isDealingDamage; }
-            set
-            {
-                isDealingDamage = value;
-            }
-        }
         public bool IsAttacking
         {
             get { return isAttacking; }
             set { isAttacking = value; }
+        }
+        public bool IsFiring
+        {
+            get { return isFiring; }
+            set
+            {
+                isFiring = value;
+            }
         }
         public int CoinCounter
         {
@@ -115,15 +133,7 @@ namespace _2DPlatformer
             get { return velocityY; }
             set { velocityY = value; }
         }
-        public int Experience
-        {
-            get { return experience; }
-            set
-            {
-                experience = value;
-                NotifyPropertyChanged();
-            }
-        }
+        
 
         public override double Top
         {
@@ -161,14 +171,33 @@ namespace _2DPlatformer
                 }
             }
         }
+        public int Experience
+        {
+            get { return experience; }
+            set
+            {
+                if (value >= xpneededtolvlup)
+                {
+                    Level++;
+                    Experience = 0;
+                    Health = 100;
+                    NotifyPropertyChanged();
+                }
+                else if(value< xpneededtolvlup)
+                {
+                    experience = value;
+                    NotifyPropertyChanged();
+                }
+                
+            }
+        }
 
         public bool Singleplayer
         {
             get { return singleplayer; }
             set { singleplayer = value; }
         }
-        
-
+     
 
         public virtual void OnGameOver()
         {
