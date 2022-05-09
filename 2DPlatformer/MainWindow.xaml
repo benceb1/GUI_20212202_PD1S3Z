@@ -19,7 +19,7 @@
         </TextBlock>
         <ProgressBar BorderBrush="DarkSlateGray" BorderThickness="5" Width="300" Height="30" Maximum="100" Value="{Binding Health}" Foreground="{Binding Health,Converter={StaticResource hpconvert}}" Canvas.Left="687" RenderTransformOrigin="0.5,0.5" Canvas.Top="27" HorizontalAlignment="Left" VerticalAlignment="Center">
         </ProgressBar>
-        <TextBlock Foreground="LightGray" FontFamily="{StaticResource futura}" FontSize="15" FontWeight="Bold" Height="20" Width="300" Canvas.Left="687" Canvas.Top="70" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <TextBlock Foreground="LightGray" FontFamily="{StaticResource futura}" FontSize="15" FontWeight="Bold" Height="20" Width="310" Canvas.Left="687" Canvas.Top="70" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Run Text="Experience: "/>
             <Run Text="{Binding Experience}"/>
             <Run Text="   "/>
