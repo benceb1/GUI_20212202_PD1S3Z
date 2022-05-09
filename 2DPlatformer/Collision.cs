@@ -135,7 +135,7 @@ namespace _2DPlatformer
             i = 0;
             foreach (Shape xy in canvas.Children)
             {
-                if (player.IsAttacking == true && player.Top >= Canvas.GetTop(xy) - player.Height && player.Top <= Canvas.GetTop(xy) + xy.Height && player.Left > Canvas.GetLeft(xy) + xy.Width && player.Left < Canvas.GetLeft(xy) + xy.Width + 10)
+                if (player.IsAttacking == true && player.Top >= Canvas.GetTop(xy) - player.Height && player.Top <= Canvas.GetTop(xy) + xy.Height && player.Left > Canvas.GetLeft(xy) + xy.Width - 20 && player.Left - 20 < Canvas.GetLeft(xy) + xy.Width + 10)
                 {
                     if (enemydetect == true && xy.Name == "Slime")
                     {
@@ -196,7 +196,7 @@ namespace _2DPlatformer
             i = 0;
             foreach (Shape xy in canvas.Children)
             {
-                if (player.IsAttacking == true && player.Top >= Canvas.GetTop(xy) - player.Height && player.Top <= Canvas.GetTop(xy) + xy.Height && player.Left > Canvas.GetLeft(xy) - player.Width && player.Left < Canvas.GetLeft(xy) - player.Width + 10)
+                if (player.IsAttacking == true && player.Top >= Canvas.GetTop(xy) - player.Height && player.Top <= Canvas.GetTop(xy) + xy.Height && player.Left > Canvas.GetLeft(xy) - player.Width - 20 && player.Left - 20 < Canvas.GetLeft(xy) - player.Width + 10)
                 {
                     if (enemydetect == true && xy.Name == "Slime")
                     {

@@ -56,8 +56,9 @@ namespace _2DPlatformer.ViewModels
                     var playerModel = GameDatabase.GetPlayers().FirstOrDefault(x => x.Name == PlayerName);
                     if (playerModel == null)
                     {
-                        var newPlayer = GameDatabase.CreatePlayer(new PlayerModel() { Name = PlayerName, Score = 0 });
-                        Effects.Transition<MainWindow>(canvas, playerModel);
+                        var newPlayer = GameDatabase.CreatePlayer(
+                            new PlayerModel() { Name = PlayerName, CoinCounter = 0, Experience = 0, Health = 100, Level = 1, SlimeKilled = 0 });
+                        Effects.Transition<MainWindow>(canvas, newPlayer);
                     }
                     else
                     {

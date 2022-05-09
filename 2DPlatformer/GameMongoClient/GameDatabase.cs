@@ -26,5 +26,21 @@ namespace _2DPlatformer.GameMongoClient
             var collection = db.GetCollection<PlayerModel>("Players").AsQueryable().ToList();
             return collection;
         }
+
+        public static void SavePlayer(PlayerModel model)
+        {
+            MongoClient dbClient = new MongoClient(connString);
+            var db = dbClient.GetDatabase("GUI_GAME");
+            var players = db.GetCollection<PlayerModel>("Players");
+            var filter = Builders<PlayerModel>.Filter.Eq(p => p.Id, model.Id);
+            var update = Builders<PlayerModel>.Update
+                .Set(p => p.Name, model.Name)
+                .Set(p => p.Experience, model.Experience)
+                .Set(p => p.Level, model.Level)
+                .Set(p => p.CoinCounter, model.CoinCounter)
+                .Set(p => p.SlimeKilled, model.SlimeKilled)
+                .Set(p => p.Health, model.Health);
+            players.UpdateOne(filter, update);
+        }
     }
 }

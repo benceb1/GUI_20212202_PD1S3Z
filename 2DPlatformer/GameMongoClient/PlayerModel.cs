@@ -14,6 +14,10 @@ namespace _2DPlatformer.GameMongoClient
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         public string Name { get; set; }
-        public int Score { get; set; }
+        public int Experience { get; set; }
+        public int Level { get; set; }
+        public int CoinCounter { get; set; }
+        public int SlimeKilled { get; set; }
+        public int Health { get; set; }
     }
 }
