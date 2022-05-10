@@ -23,7 +23,7 @@ namespace _2DPlatformer
         private bool endofgame = false;
         private bool singleplayer;
         private int health = 100;
-        private int xpneededtolvlup = 10;
+        private int xpneededtolvlup = 50;
         private bool isAttacking = false;
         private bool isFiring = false;
         private bool isDamaged = false;
