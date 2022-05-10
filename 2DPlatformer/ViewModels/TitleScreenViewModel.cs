@@ -36,7 +36,7 @@ namespace _2DPlatformer.ViewModels
                     var playerModel = GameDatabase.GetPlayers().FirstOrDefault(x => x.Name == PlayerName);
                     if (playerModel == null)
                     {
-                        MessageBox.Show("Nincs ilyen játékos!");
+                        MessageBox.Show("No such player!");
                     }
                     else
                     {
@@ -45,7 +45,7 @@ namespace _2DPlatformer.ViewModels
                 }
                 else
                 {
-                    MessageBox.Show("Üres a játékos név!");
+                    MessageBox.Show("The player name is empty!");
                 }
             });
 
@@ -62,12 +62,12 @@ namespace _2DPlatformer.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show("Ilyen játékos már létezik!");
+                        MessageBox.Show("Such a player already exists!");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Üres a játékos név!");
+                    MessageBox.Show("The player name is empty!");
                 }
             });
         }
